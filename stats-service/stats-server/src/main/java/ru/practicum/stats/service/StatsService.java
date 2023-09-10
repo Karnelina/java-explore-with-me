@@ -1,6 +1,5 @@
 package ru.practicum.stats.service;
 
-
 import ru.practicum.stats.dto.ViewStatsResponseDto;
 import ru.practicum.stats.model.EndpointHit;
 
@@ -12,5 +11,5 @@ public interface StatsService {
     EndpointHit saveEndpointHit(EndpointHit endpointHit);
 
     Collection<ViewStatsResponseDto> getVisitStats(LocalDateTime start, LocalDateTime end,
-                                             Set<String> uris, boolean unique);
+                                                   Set<String> uris, boolean unique);
 }

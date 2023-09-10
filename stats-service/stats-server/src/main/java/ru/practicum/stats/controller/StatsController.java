@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import ru.practicum.aspect.ToLog;
 import ru.practicum.stats.dto.EndpointHitRequestDto;
 import ru.practicum.stats.dto.EndpointHitResponseDto;
 import ru.practicum.stats.dto.ViewStatsResponseDto;
@@ -19,17 +20,20 @@ import java.util.Set;
 
 import static ru.practicum.Constant.TIME_PATTERN;
 
-
 @RestController
+@RequestMapping
 @RequiredArgsConstructor
-public class StatController {
-    private final StatsService statsService;
+@ToLog
+public class StatsController {
+
+    private final StatsService endpointHitService;
     private final EndpointHitMapper endpointHitMapper;
 
     @PostMapping("/hit")
     @ResponseStatus(HttpStatus.CREATED)
     public EndpointHitResponseDto saveHit(@Valid @RequestBody EndpointHitRequestDto endpointHitRequestDto) {
-        EndpointHit endpointHit = statsService.saveEndpointHit(endpointHitMapper.toEndpointHit(endpointHitRequestDto));
+        EndpointHit endpointHit = endpointHitService.saveEndpointHit(
+                endpointHitMapper.toEndpointHit(endpointHitRequestDto));
 
         return endpointHitMapper.toEndpointHitResponseDto(endpointHit);
     }
@@ -43,6 +47,6 @@ public class StatController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "End cannot be earlier than start");
         }
 
-        return statsService.getVisitStats(start, end, uris, unique);
+        return endpointHitService.getVisitStats(start, end, uris, unique);
     }
 }

@@ -25,8 +25,8 @@ public interface EndpointHitRepository extends JpaRepository<EndpointHit, Long> 
             "and (coalesce(:uris, null) is null or eh.uri in :uris) " +
             "group by eh.app, eh.uri " +
             "order by 3 desc")
-    List<ViewStatsResponseDto> getStats(@Param("uris")Set<String> uris,
-                                        @Param("start")LocalDateTime start,
+    List<ViewStatsResponseDto> getStats(@Param("uris") Set<String> uris,
+                                        @Param("start") LocalDateTime start,
                                         @Param("end") LocalDateTime end,
                                         @Param("unique") boolean unique);
 }

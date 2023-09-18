@@ -5,7 +5,6 @@ import ru.practicum.model.Request;
 import ru.practicum.model.enums.RequestStatus;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public interface RequestRepository extends JpaRepository<Request, Long> {

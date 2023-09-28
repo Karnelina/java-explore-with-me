@@ -29,8 +29,10 @@ public class PublicCategoryController {
     private final CategoryMapper categoryMapper;
 
     @GetMapping
-    public Collection<CategoryDto> getAllCategories(@RequestParam(defaultValue = PAGE_DEFAULT_FROM) @PositiveOrZero Integer from,
-                                                    @RequestParam(defaultValue = PAGE_DEFAULT_SIZE) @Positive Integer size) {
+    public Collection<CategoryDto> getAllCategories(@RequestParam(defaultValue = PAGE_DEFAULT_FROM)
+                                                    @PositiveOrZero Integer from,
+                                                    @RequestParam(defaultValue = PAGE_DEFAULT_SIZE)
+                                                    @Positive Integer size) {
         Pageable page = new OffsetBasedPageRequest(from, size);
         return categoryService.getAllCategories(page)
                 .stream()

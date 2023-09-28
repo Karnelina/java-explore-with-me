@@ -292,7 +292,7 @@ public class EventServiceImpl implements EventService {
                 .findAllByStatusAndEventIdIn(RequestStatus.CONFIRMED, eventsId);
 
         return confirmedRequests.stream()
-                .collect(Collectors.groupingBy(request -> request.getEvent().getId()))
+                .collect(Collectors.groupingBy((Request request) -> request.getEvent().getId()))
                 .entrySet()
                 .stream()
                 .collect(Collectors.toMap(Map.Entry::getKey, e -> (long) e.getValue().size()));
@@ -312,7 +312,7 @@ public class EventServiceImpl implements EventService {
     private Map<Long, Long> getViews(Collection<Long> eventsId) {
         List<String> uris = eventsId
                 .stream()
-                .map(id -> "/events/" + id)
+                .map((Long id) -> "/events/" + id)
                 .collect(Collectors.toList());
 
         Optional<LocalDateTime> start = eventRepository.getStart(eventsId);

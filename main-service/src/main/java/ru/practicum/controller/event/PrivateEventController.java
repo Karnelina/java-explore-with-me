@@ -34,8 +34,10 @@ public class PrivateEventController {
 
     @GetMapping
     public Collection<EventShortDto> getEventsAddedByCurrentUser(@Positive @PathVariable Long userId,
-                                                                 @RequestParam(defaultValue = PAGE_DEFAULT_FROM) @PositiveOrZero Integer from,
-                                                                 @RequestParam(defaultValue = PAGE_DEFAULT_SIZE) @Positive Integer size) {
+                                                                 @RequestParam(defaultValue = PAGE_DEFAULT_FROM)
+                                                                 @PositiveOrZero Integer from,
+                                                                 @RequestParam(defaultValue = PAGE_DEFAULT_SIZE)
+                                                                 @Positive Integer size) {
         Pageable page = new OffsetBasedPageRequest(from, size);
         return eventService.getEventsAddedByCurrentUser(userId, page);
     }
@@ -69,7 +71,8 @@ public class PrivateEventController {
     @PatchMapping("/{eventId}/requests")
     public EventRequestStatusUpdateResultDto changeStatusOfRequestsByCurrentUser(@Positive @PathVariable Long userId,
                                                                                  @Positive @PathVariable Long eventId,
-                                                                                 @Valid @RequestBody EventRequestStatusUpdateRequestDto dto) {
+                                                                                 @Valid @RequestBody
+                                                                                 EventRequestStatusUpdateRequestDto dto) {
         return eventService.changeStatusOfRequestsByCurrentUser(userId, eventId, dto);
     }
 }

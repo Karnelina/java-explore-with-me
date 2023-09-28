@@ -29,8 +29,10 @@ public class PublicCommentController {
 
     @GetMapping
     public Collection<FullCommentDto> getCommentsByEventId(@Positive @RequestParam Long eventId,
-                                                           @RequestParam(defaultValue = PAGE_DEFAULT_FROM) @PositiveOrZero Integer from,
-                                                           @RequestParam(defaultValue = PAGE_DEFAULT_SIZE) @Positive Integer size) {
+                                                           @RequestParam(defaultValue = PAGE_DEFAULT_FROM)
+                                                           @PositiveOrZero Integer from,
+                                                           @RequestParam(defaultValue = PAGE_DEFAULT_SIZE)
+                                                           @Positive Integer size) {
         Pageable page = new OffsetBasedPageRequest(from, size);
         return commentService.getCommentsByEventId(eventId, page);
     }

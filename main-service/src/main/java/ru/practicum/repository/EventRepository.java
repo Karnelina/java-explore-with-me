@@ -38,7 +38,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
                             @Param("categoryIds") Collection<Long> categoryIds,
                             @Param("rangeStart") LocalDateTime rangeStart,
                             @Param("rangeEnd") LocalDateTime rangeEnd,
-                            org.springframework.data.domain.Pageable pageable);
+                            Pageable pageable);
 
     @Query("select e from Event e " +
             "where e.state = 'PUBLISHED' " +
@@ -58,7 +58,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     List<Event> findAllPublic(@Param("text") String text, @Param("categoryIds") Set<Long> categoryIds,
                               @Param("paid") Boolean paid, @Param("rangeStart") LocalDateTime rangeStart,
                               @Param("rangeEnd") LocalDateTime rangeEnd, @Param("onlyAvailable") Boolean onlyAvailable,
-                              org.springframework.data.domain.Pageable pageable);
+                              Pageable pageable);
 
     @Query("SELECT MIN(e.publishedOn) FROM Event e WHERE e.id IN :eventsId")
     Optional<LocalDateTime> getStart(@Param("eventsId") Collection<Long> eventsId);

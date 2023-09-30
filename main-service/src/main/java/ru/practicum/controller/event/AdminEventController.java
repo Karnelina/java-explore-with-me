@@ -32,10 +32,14 @@ public class AdminEventController {
     private final EventService eventService;
 
     @GetMapping
-    public Collection<EventFullDto> getEventsByAdmin(@RequestParam(defaultValue = PAGE_DEFAULT_FROM) @PositiveOrZero Integer from,
-                                                     @RequestParam(defaultValue = PAGE_DEFAULT_SIZE) @Positive Integer size,
-                                                     @RequestParam(required = false) @DateTimeFormat(pattern = TIME_PATTERN) LocalDateTime rangeStart,
-                                                     @RequestParam(required = false) @DateTimeFormat(pattern = TIME_PATTERN) LocalDateTime rangeEnd,
+    public Collection<EventFullDto> getEventsByAdmin(@RequestParam(defaultValue = PAGE_DEFAULT_FROM)
+                                                     @PositiveOrZero Integer from,
+                                                     @RequestParam(defaultValue = PAGE_DEFAULT_SIZE)
+                                                     @Positive Integer size,
+                                                     @RequestParam(required = false)
+                                                     @DateTimeFormat(pattern = TIME_PATTERN) LocalDateTime rangeStart,
+                                                     @RequestParam(required = false)
+                                                     @DateTimeFormat(pattern = TIME_PATTERN) LocalDateTime rangeEnd,
                                                      @RequestParam(required = false) List<EventStatus> states,
                                                      @RequestParam(required = false) Set<Long> users,
                                                      @RequestParam(required = false) Set<Long> categories) {

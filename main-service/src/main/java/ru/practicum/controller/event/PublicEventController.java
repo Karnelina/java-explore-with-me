@@ -33,12 +33,16 @@ public class PublicEventController {
     public Collection<EventShortDto> getEventsPublic(@RequestParam(required = false) String text,
                                                      @RequestParam(required = false) Set<Long> categoriesIds,
                                                      @RequestParam(required = false) Boolean paid,
-                                                     @RequestParam(required = false) @DateTimeFormat(pattern = TIME_PATTERN) LocalDateTime rangeStart,
-                                                     @RequestParam(required = false) @DateTimeFormat(pattern = TIME_PATTERN) LocalDateTime rangeEnd,
+                                                     @RequestParam(required = false)
+                                                     @DateTimeFormat(pattern = TIME_PATTERN) LocalDateTime rangeStart,
+                                                     @RequestParam(required = false)
+                                                     @DateTimeFormat(pattern = TIME_PATTERN) LocalDateTime rangeEnd,
                                                      @RequestParam(defaultValue = "false") boolean onlyAvailable,
                                                      @RequestParam(required = false) EventSort sort,
-                                                     @RequestParam(defaultValue = PAGE_DEFAULT_FROM) @PositiveOrZero Integer from,
-                                                     @RequestParam(defaultValue = PAGE_DEFAULT_SIZE) @Positive Integer size,
+                                                     @RequestParam(defaultValue = PAGE_DEFAULT_FROM)
+                                                     @PositiveOrZero Integer from,
+                                                     @RequestParam(defaultValue = PAGE_DEFAULT_SIZE)
+                                                     @Positive Integer size,
                                                      HttpServletRequest request) {
         Pageable pageable = new OffsetBasedPageRequest(from, size);
 
